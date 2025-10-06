@@ -58,6 +58,7 @@ img {
 
 .section {
     padding: 6rem 0;
+    scroll-margin-top: 120px; /* Offset for sticky header */
 }
 
 .section-heading {
@@ -276,6 +277,7 @@ img {
     color: var(--color-white);
     padding: 5rem 0 4rem;
     overflow: hidden;
+    scroll-margin-top: 0; /* No offset needed for hero */
 }
 
 .hero::after {

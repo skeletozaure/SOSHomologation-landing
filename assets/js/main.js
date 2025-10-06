@@ -34,9 +34,23 @@ smoothScrollLinks.forEach((link) => {
         event.preventDefault();
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        target.scrollIntoView({
-            behavior: prefersReducedMotion ? 'auto' : 'smooth',
-            block: 'start'
-        });
+        // Get header height for offset
+        const header = document.querySelector('.site-header');
+        const headerHeight = header ? header.offsetHeight : 0;
+        
+        // Calculate position with offset
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = targetPosition - headerHeight - 20; // 20px extra padding
+
+        if (prefersReducedMotion) {
+            window.scrollTo({
+                top: offsetPosition
+            });
+        } else {
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
     });
 });
